@@ -1,6 +1,6 @@
 {
-    "authority": "https://login.microsoftonline.com/b55f0c51-61a7-45c3-84df-33569b247796",
-    "client_id": "de3ce262-8535-4f42-87bf-8188ac6f71ec",
-    "scope": ["api://855dac46-661b-4463-97cf-d57a190bf2ed/.default"],
-    "client_secret": "-CwvmIqd7j65~nBiXB2sX9H.PUA2KW_NaK"
+    "authority": "https://login.microsoftonline.com/<your tenant id>",
+    "client_id": "<your client id>",
+    "scope": ["api://<your api client id>/.default"],
+    "client_secret": "<your client secret>"
 }
