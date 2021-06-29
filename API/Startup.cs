@@ -20,6 +20,8 @@ namespace API
     public class Startup
     {
         readonly string MyAllowSpecificOrigins = "localHostAccess";
+        readonly string ScopeClaim = "http://schemas.microsoft.com/identity/claims/scope";
+        readonly string ExpectedRole = "access_as_application";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -36,8 +38,8 @@ namespace API
                 "AllowedAccess",
                 policyBuilder => policyBuilder.RequireAssertion(
                     context 
-                    => context.User.IsInRole("access_as_application")
-                    || context.User.HasClaim("scope","access_as_user"))
+                    => context.User.IsInRole(ExpectedRole)
+                    || context.User.HasClaim(ScopeClaim,"access_as_user"))
             ));
             services.AddControllers();
             services.AddCors(options =>
