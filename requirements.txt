@@ -2,3 +2,4 @@ msal>=1.12.0
 requests>=2.25.1
 azure-identity>=1.6.0
 azure-keyvault-secrets>=4.3.0
+msal-extensions>=0.3.0

@@ -1,10 +1,13 @@
 import json
 from azure.identity._credentials.chained import ChainedTokenCredential
+from msal_extensions import persistence
+from msal_extensions.token_cache import PersistedTokenCache
 
 import requests
 import msal
 from azure.identity import AzureCliCredential, ManagedIdentityCredential
 from azure.keyvault.secrets import SecretClient
+import msalcache
 
 jsondata = open("config.json","r")
 config = json.load(jsondata)
@@ -13,10 +16,15 @@ credential = ChainedTokenCredential(AzureCliCredential(),ManagedIdentityCredenti
 secret_client = SecretClient(config["vault_url"], credential=credential)
 aad_client_secret = secret_client.get_secret("AadClientSecret")
 
+persistence =msalcache.build_persistence("token_cache.bin")
+print("Is this persistence encrypted?", persistence.is_encrypted)
+cache = PersistedTokenCache(persistence)
+
 app = msal.ConfidentialClientApplication(
     client_id=config["client_id"],
     client_credential=aad_client_secret.value,
     authority=config["authority"],
+    token_cache=cache
 )
 
 result = None
