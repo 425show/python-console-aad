@@ -1,9 +1,9 @@
 import json
-from azure.identity._credentials.chained import ChainedTokenCredential
+#from azure.identity._credentials.chained import ChainedTokenCredential
 
 import requests
 import msal
-from azure.identity import AzureCliCredential, ManagedIdentityCredential
+from azure.identity import ChainedTokenCredential, AzureCliCredential, ManagedIdentityCredential
 from azure.keyvault.secrets import SecretClient
 
 jsondata = open("config.json","r")
