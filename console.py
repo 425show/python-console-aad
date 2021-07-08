@@ -17,7 +17,7 @@ secret_client = SecretClient(config["vault_url"], credential=credential)
 aad_client_secret = secret_client.get_secret("AadClientSecret")
 
 persistence =msalcache.build_persistence("token_cache.bin")
-print("Is this persistence encrypted?", persistence.is_encrypted)
+print(f'The MSAL Cache supports encryption: {persistence.is_encrypted}')
 cache = PersistedTokenCache(persistence)
 
 app = msal.ConfidentialClientApplication(
