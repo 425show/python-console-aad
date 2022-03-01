@@ -10,6 +10,8 @@
 *.userosscache
 *.sln.docstates
 
+token_cache.bin
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
